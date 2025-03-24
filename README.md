@@ -12,9 +12,12 @@ A Flask-based API using the Repository Pattern and Service Layer, with JSON file
 │    ├── post_service.py
 │── /repositories         # Database interaction (repository layer)
 │    ├── post_repository.py
+│── /models               # Data models (data structures)
+│    ├── blog_model.py   # <-- Store your BlogModel class here
 │── /data                 # JSON storage
 │    ├── data.json
 │── README.md             # Project guide
+
 ```
 
 ## 🚀 Endpoints

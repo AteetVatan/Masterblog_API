@@ -1,7 +1,9 @@
 """Module to create, read and write JSON data"""
 import json
 import os
-from logs_helper import LogsHelper
+
+from .logs_helper import LogsHelper
+
 
 class JsonFileHelper:
     """Helper Class responsible for JSON file operations."""

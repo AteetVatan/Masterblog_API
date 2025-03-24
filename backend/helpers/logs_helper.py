@@ -26,9 +26,10 @@ class LogsHelper:
         logging.warning(msg)
 
     @staticmethod
-    def error(msg):
+    def error(msg, args = None):
         """Log an error message."""
-        logging.error(msg)
+        args = {} if not args else args
+        logging.error(msg, args)
 
     @staticmethod
     def critical(msg):
