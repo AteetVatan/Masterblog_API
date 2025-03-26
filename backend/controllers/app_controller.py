@@ -6,7 +6,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_swagger_ui import get_swaggerui_blueprint
 
-from config import Config
+from backend.config import Config
 from .post_controller import PostController
 
 

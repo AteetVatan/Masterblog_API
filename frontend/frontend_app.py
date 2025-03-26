@@ -1,6 +1,6 @@
 """The Main Frontend Module"""
 from flask import Flask, render_template
-import config
+import frontend.config as config
 
 app = Flask(__name__)
 

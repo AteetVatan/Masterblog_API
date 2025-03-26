@@ -5,7 +5,7 @@ import sys
 from flask import Flask
 from flask_cors import CORS
 
-from controllers import AppController
+from backend.controllers import AppController
 
 app = Flask(__name__)
 CORS(app)

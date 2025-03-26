@@ -4,10 +4,10 @@ import json
 from flask import request, Blueprint, jsonify
 
 
-from backend.helpers import LogsHelper
-from backend.models import PostModel
-from backend.services import PostServices
-from backend.enums import Sort, Direction
+from ..helpers import LogsHelper
+from ..models import PostModel
+from ..services import PostServices
+from ..enums import Sort, Direction
 
 
 class PostController:

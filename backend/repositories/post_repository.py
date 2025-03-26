@@ -2,8 +2,8 @@
 import itertools
 import os
 
-from config import Config
-from backend.helpers import LogsHelper, JsonFileHelper
+from backend.config import Config
+from ..helpers import LogsHelper, JsonFileHelper
 
 
 class PostRepository:

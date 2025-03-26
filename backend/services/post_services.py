@@ -3,10 +3,10 @@ import itertools
 from typing import List
 from flask import jsonify
 
-from backend.enums import Direction
-from backend.helpers import LogsHelper
-from backend.models import PostModel
-from backend.repositories import PostRepository
+from ..enums import Direction
+from ..helpers import LogsHelper
+from ..models import PostModel
+from ..repositories import PostRepository
 
 
 class PostServices:
