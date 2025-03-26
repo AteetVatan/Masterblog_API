@@ -7,9 +7,9 @@
   },
   "host": "localhost:5002",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "tags": [
     {
       "name": "Posts",
@@ -26,16 +26,14 @@
             "in": "query",
             "type": "string",
             "enum": ["title", "content"],
-            "description": "Sort the posts by 'title' or 'content'",
-            "required": false
+            "description": "Sort the posts by 'title' or 'content'"
           },
           {
             "name": "direction",
             "in": "query",
             "type": "string",
             "enum": ["asc", "desc"],
-            "description": "Direction of sorting: 'asc' for ascending, 'desc' for descending",
-            "required": false
+            "description": "Direction of sorting: 'asc' or 'desc'"
           },
           {
             "name": "page",
@@ -43,8 +41,7 @@
             "type": "integer",
             "default": 1,
             "minimum": 1,
-            "description": "Page number for pagination (starts from 1)",
-            "required": false
+            "description": "Page number for pagination (starts from 1)"
           },
           {
             "name": "per_page",
@@ -52,21 +49,14 @@
             "type": "integer",
             "default": 10,
             "minimum": 1,
-            "description": "Number of posts per page",
-            "required": false
+            "description": "Number of posts per page"
           }
         ],
         "responses": {
-          "200": {
-            "description": "List of blog posts"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "200": { "description": "List of blog posts" },
+          "500": { "description": "Server error" }
         },
-        "tags": [
-          "Posts"
-        ]
+        "tags": ["Posts"]
       },
       "post": {
         "summary": "Create a new blog post",
@@ -80,89 +70,53 @@
               "properties": {
                 "title": {
                   "type": "string",
-                  "description": "The title of the blog post.",
-                  "required": true
+                  "description": "The title of the blog post."
                 },
                 "content": {
                   "type": "string",
-                  "description": "The content of the blog post.",
-                  "required": true
+                  "description": "The content of the blog post."
                 },
                 "author": {
                   "type": "string",
-                  "description": "The author of the blog post.",
-                  "required": false
+                  "description": "The author of the blog post."
                 },
                 "notes": {
                   "type": "string",
-                  "description": "The notes for the blog post.",
-                  "required": false
+                  "description": "The notes for the blog post."
                 }
               },
-              "required": [
-                "title",
-                "content"
-              ]
+              "required": ["title", "content"]
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Post created successfully"
-          },
-          "400": {
-            "description": "Validation error"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "201": { "description": "Post created successfully" },
+          "400": { "description": "Validation error" },
+          "500": { "description": "Server error" }
         },
-        "tags": [
-          "Posts"
-        ]
+        "tags": ["Posts"]
       }
     },
     "/api/posts/search": {
       "get": {
         "summary": "Search posts by title or content",
         "parameters": [
-          {
-            "name": "title",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "content",
-            "in": "query",
-            "type": "string"
-          }
+          { "name": "title", "in": "query", "type": "string" },
+          { "name": "content", "in": "query", "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "Search results"
-          },
-          "400": {
-            "description": "Missing query parameter"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "200": { "description": "Search results" },
+          "400": { "description": "Missing query parameter" },
+          "500": { "description": "Server error" }
         },
-        "tags": [
-          "Posts"
-        ]
+        "tags": ["Posts"]
       }
     },
     "/api/posts/{id}": {
       "put": {
         "summary": "Update a post by ID",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "integer"
-          },
+          { "name": "id", "in": "path", "required": true, "type": "integer" },
           {
             "in": "body",
             "name": "body",
@@ -170,61 +124,61 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "type": "string"
-                },
-                "content": {
-                  "type": "string"
-                },
-                "author": {
-                  "type": "string"
-                },
-                "notes": {
-                  "type": "string"
-                }
+                "title": { "type": "string" },
+                "content": { "type": "string" },
+                "author": { "type": "string" },
+                "notes": { "type": "string" }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "Post updated"
-          },
-          "400": {
-            "description": "Validation error"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "200": { "description": "Post updated" },
+          "400": { "description": "Validation error" },
+          "500": { "description": "Server error" }
         },
-        "tags": [
-          "Posts"
-        ]
+        "tags": ["Posts"]
       },
       "delete": {
         "summary": "Delete a post by ID",
         "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "integer" }
+        ],
+        "responses": {
+          "200": { "description": "Post deleted" },
+          "400": { "description": "Validation error" },
+          "500": { "description": "Server error" }
+        },
+        "tags": ["Posts"]
+      }
+    },
+    "/api/posts/update_likes": {
+      "post": {
+        "summary": "Update like count for a post",
+        "parameters": [
           {
-            "name": "id",
-            "in": "path",
+            "in": "body",
+            "name": "body",
             "required": true,
-            "type": "integer"
+            "schema": {
+              "type": "object",
+              "properties": {
+                "post_id": {
+                  "type": "integer",
+                  "default": 1,
+                  "description": "The post ID"
+                }
+              },
+              "required": ["post_id"]
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "Post deleted"
-          },
-          "400": {
-            "description": "Validation error"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "200": { "description": "Like count updated" },
+          "400": { "description": "Validation error" },
+          "500": { "description": "Server error" }
         },
-        "tags": [
-          "Posts"
-        ]
+        "tags": ["Posts"]
       }
     }
   }

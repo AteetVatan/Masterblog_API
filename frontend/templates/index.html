@@ -3,27 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Posts</title>
+    <title>THE AI Blog Posts</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>📚 Blog Posts</h1>
-        <div class="input-field">
-            <input type="text" id="api-base-url" placeholder="Enter API Base URL" value="{{api_default_url}}">
-            <button onclick="loadPosts()">Load Posts</button>
+<div class="container">
+    <h1>📚 THE AI Blog Posts</h1>
+    <div class="input-field">
+        <input type="text" id="api-base-url" title="API URL" placeholder="Enter API Base URL"
+               value="{{api_default_url}}">
+        <button onclick="loadPosts()">Load Posts</button>
+    </div>
+    <div class="input-field">
+        <input type="text" id="search-post-title" title="Search post by Title"
+               placeholder="Search post by Title"
+        >
+        <input type="text" id="search-post-content" title="Search post by Content"
+               placeholder="Search post by Content"
+        >
+        <button onclick="SearchPosts()">Search Posts</button>
+    </div>
+    <div class="input-field">
+        <div class="field-group">
+            <label for="sort-by">Sort by:</label>
+            <select id="sort-by" onchange="loadPosts()" required>
+                <option value="" disabled selected hidden>Choose a field…</option>
+                <option value="title">Title</option>
+                <option value="content">Content</option>
+            </select>
         </div>
-        <div class="input-field">
-            <input type="text" id="post-title" placeholder="Enter Post Title">
-            <input type="text" id="post-content" placeholder="Enter Post Content">
-            <button onclick="addPost()">Add Post</button>
-        </div>
-        <div id="post-container">
-            <!-- Blog posts will be inserted here by JavaScript -->
+
+        <div class="field-group">
+            <label for="sort-order">Order:</label>
+            <select id="sort-order" onchange="loadPosts()" required>
+                <option value="" disabled selected hidden>Choose order…</option>
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
         </div>
     </div>
+    <div>
+        <button class="add-post" onclick="addNewPostDisplay()">Add Post</button>
+    </div>
 
-    <script src="static/main.js"></script>
+    <div id="add-post-container" style="display:none;">
+        <!-- New Blog posts will be created here-->
+    </div>
+
+    <div id="post-container">
+        <!-- Blog posts will be inserted here-->
+    </div>
+</div>
+
+<script src="static/main.js"></script>
 </body>
 </html>

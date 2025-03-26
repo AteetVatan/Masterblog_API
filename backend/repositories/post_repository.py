@@ -2,8 +2,8 @@
 import itertools
 import os
 
-import config
-from helpers import JsonFileHelper, LogsHelper
+from config import Config
+from backend.helpers import LogsHelper, JsonFileHelper
 
 
 class PostRepository:
@@ -22,10 +22,21 @@ class PostRepository:
     @staticmethod
     def __get_data():
         """Method to initialize the Repository"""
-        file_path = config.DEFAULT_POSTS_FILE_PATH
+        file_path = Config.DEFAULT_POSTS_FILE_PATH
         if os.path.exists(file_path):
             LogsHelper.info(f"Post file found. Initializing post data.-{file_path}")
-            return JsonFileHelper.read_data(config.DEFAULT_POSTS_FILE_PATH)
+            return JsonFileHelper.read_data(Config.DEFAULT_POSTS_FILE_PATH)
 
         LogsHelper.info("No existing post file found. Initializing empty post data.")
         return []
+
+    @staticmethod
+    def write_data(data):
+        """Method to write the Data in Repository"""
+        file_path = Config.DEFAULT_POSTS_FILE_PATH
+        if os.path.exists(file_path):
+            LogsHelper.info(f"Post file found. Writing post data.-{file_path}")
+            JsonFileHelper.write_data(data, Config.DEFAULT_POSTS_FILE_PATH)
+            return
+
+        LogsHelper.info("No existing post file found. Initializing empty post data.")

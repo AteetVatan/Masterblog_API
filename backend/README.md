@@ -78,6 +78,22 @@ Base URL: `http://localhost:5002`
 
 ---
 
+### ❤️ `/api/posts/update_likes`
+
+| Method | Description                 |
+|--------|-----------------------------|
+| POST   | Update like count for a post |
+
+**Request Body:**
+
+```json
+{
+  "post_id": 1
+}
+```
+
+---
+
 ## 🧩 Architecture
 
 This project follows a clean, layered CRUD Repository pattern:
@@ -137,22 +153,20 @@ App runs on `http://localhost:5002`
 
 ## 📌 To Do / Future Enhancements
 
-- ✅ Add PUT support for updating blog posts
 - 🔐 Integrate JWT authentication
 - 🔎 Full-text search support
 - 🧪 Add unit & integration tests
-- 🗂️ Paginate and filter posts more efficiently
+- 🗂️ Filter posts more efficiently
 - 💾 Move from JSON to SQLite or PostgreSQL backend
 
 ---
 
 ## 🧠 Author
 
-Built by Ateet — Devoted to code, tradition, and clean design. 🚀
+Built by Ateet The AI Expert — Devoted to code, tradition, and clean design. 🚀
 
 ---
 
 ## 📜 License
 
 This project is licensed under the MIT License. Free to use, share, and build on.
-

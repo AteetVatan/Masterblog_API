@@ -6,8 +6,8 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_swagger_ui import get_swaggerui_blueprint
 
-import config
-from controllers.post_controller import PostController
+from config import Config
+from .post_controller import PostController
 
 
 class AppController:
@@ -17,7 +17,7 @@ class AppController:
         self.app = app
         self.limiter = Limiter(get_remote_address,
                                app=self.app,
-                               default_limits=config.LIMITER_DEFAULT_LIMITS)
+                               default_limits=Config.LIMITER_DEFAULT_LIMITS)
         post_controller = self.start_post_api()
         self.add_routes(post_controller)
         self.__init__swagger()
@@ -32,13 +32,13 @@ class AppController:
     def __init__swagger(self):
         """Method to initialize the swagger documentation."""
         swagger_ui_blueprint = get_swaggerui_blueprint(
-            config.SWAGGER_URL,
-            config.API_URL,
+            Config.SWAGGER_URL,
+            Config.API_URL,
             config={
-                'app_name': config.APP_NAME
+                'app_name': Config.APP_NAME
             }
         )
-        self.app.register_blueprint(swagger_ui_blueprint, url_prefix=config.SWAGGER_URL)
+        self.app.register_blueprint(swagger_ui_blueprint, url_prefix=Config.SWAGGER_URL)
 
     def add_routes(self, post_controller: PostController):
         """Method to handel HTTP Routes."""

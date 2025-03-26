@@ -1,91 +1,327 @@
+/* ========== Polished Theme with Button Contrast ========== */
 * {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background-color: #f5f5f5;
-    margin: 0;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #111;
     padding: 20px 0;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
-    background-color: #fff;
-    width: 80%;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-    margin: auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1400px;
+    padding: 40px;
+    margin: 0px auto;
+    color: #111;
+}
+
+#post-container {
+    margin-top: 20px;
 }
 
 .input-field {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .input-field input,
+.input-field select,
 .input-field button {
-    height: 40px;
-    padding: 10px;
+    padding: 12px 15px;
     font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.5s ease;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    color: #111;
+    font-weight: 500;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease;
+    flex: 1 1 auto;
+    min-width: 180px;
+    height: 45px;
 }
 
-.input-field input {
-    flex-grow: 1;
-    margin-right: 10px;
-}
-
-.input-field input::placeholder {
-    color: #aaa;
+.input-field input::placeholder,
+.input-field select:invalid {
+    color: #888;
 }
 
 .input-field button {
-    background-color: #4466ee;
+    background-color: #007bff;
     color: #fff;
+    font-weight: bold;
     cursor: pointer;
+    max-width: fit-content;
 }
 
 .input-field button:hover {
-    background-color: #3355dd;
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+.input-field label {
+    font-size: 14px;
+    color: #333;
+    margin-left: 10px;
+    flex: 1 1 100%;
+    white-space: nowrap;
+}
+
+.input-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
 }
 
 .post {
-    border-radius: 8px;
-    background-color: #f5f5f5;
-    margin-bottom: 20px;
-    padding: 20px;
-    position: relative;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    color: #111;
 }
 
 .post h2 {
     margin: 0;
-    color: #4466ee;
     font-weight: 700;
+    font-size: 22px;
+    color: #333;
 }
 
 .post p {
     margin: 10px 0 0;
-    color: #333;
+    color: #555;
+}
+
+.post-buttons,
+.post-buttons-bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
 }
 
 .post button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #ff4444;
+    background-color: #343a40;
     color: #fff;
     border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 8px 16px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
 }
 
 .post button:hover {
-    background-color: #cc0000;
+    background-color: #23272b;
+}
+
+.post-buttons-delete {
+    background-color: #dc3545 !important;;
+}
+
+.post-buttons-delete:hover {
+    background-color: #b02a37 !important;;
+}
+
+.post-buttons-edit {
+    background-color: #17a2b8 !important;
+}
+
+.post-buttons-edit:hover {
+    background-color: #117a8b !important;
+}
+
+.like-btn {
+    background-color: #ffc107 !important;
+    color: #fff !important;
+    border: none !important;
+    font-size: 18px !important;
+    border-radius: 12px !important;;
+    padding: 10px 12px  !important;;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background-color 0.3s ease !important;
+    width: 44px;
+    height: 44px;
+}
+
+.like-btn:hover {
+    background-color: #e0a800;
+    transform: scale(1.1);
+}
+
+.like-btn:active {
+    transform: scale(0.95);
+}
+
+.like-btn::before {
+    content: "❤";
+    font-size: 18px;
+}
+
+.span-like{
+    margin-right: 4px;
+}
+
+.post-buttons-bottom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-buttons-bottom p {
+    margin-left: 12px;
+    font-size: 16px;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.edit-form {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.edit-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form input,
+.edit-form textarea {
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #fff;
+    color: #111;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    resize: vertical;
+}
+
+.edit-form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    max-width: fit-content;
+}
+
+.edit-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.edit-cancel {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.add-post {
+    background-color: #28a745 !important;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease;
+    width: 100% !important;
+    display: inline-block;
+}
+
+.add-post:hover {
+    background-color: #218838 !important;
+    transform: scale(1.02);
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 200px;
+    margin-right: 10px;
+    gap: 5px;
+}
+
+.input-field select:invalid {
+    color: #888;
+}
+
+.input-field select:invalid {
+    color: #bbb;
+    font-style: italic;
+}
+
+.input-field {
+    flex-wrap: nowrap; /* prevent wrapping if you want fields to stretch out inline */
+    align-items: flex-start;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .input-field {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Add spacing between elements */
+    }
+
+    .input-field input,
+    .input-field select,
+    .input-field button,
+    .add-post {
+        width: 100% !important;
+        margin: 5px 0;
+    }
+
+    .post-buttons,
+    .post-buttons-bottom {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+    }
+
+    .edit-cancel {
+        width: 100%;
+    }
 }

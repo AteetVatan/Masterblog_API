@@ -3,11 +3,10 @@ import itertools
 from typing import List
 from flask import jsonify
 
-from enums import Direction
-
-from helpers import LogsHelper
-from models import PostModel
-from repositories import PostRepository
+from backend.enums import Direction
+from backend.helpers import LogsHelper
+from backend.models import PostModel
+from backend.repositories import PostRepository
 
 
 class PostServices:
@@ -51,43 +50,7 @@ class PostServices:
         end_index = start_index + per_page
         return all_posts[start_index:end_index]
 
-    def add_post(self, post: PostModel):
-        """Method to add posts."""
-        post.post_id = next(self.id_counter)  # Generate a unique ID
-        self.__post_items.append(post)
-        return post
-
-    def search(self, title_query="", content_query=""):
-        """The Posts search Method."""
-        try:
-            # Filter posts where the title or content contains the search term as a substring
-            filtered_posts = [
-                post.to_dict() for post in self.__post_items
-                if (title_query and title_query.lower() in post.title.lower()) or
-                   (content_query.lower() and content_query in post.content.lower())
-            ]
-            return filtered_posts
-        except ValueError as e:
-            raise e
-
-    def update(self,
-               post_id: int,
-               author: str,
-               title: str,
-               content: str,
-               notes: str = ""):
-        """Method to update the post-item"""
-        try:
-            for post in self.__post_items:
-                if post.post_id == post_id:
-                    post.author = author
-                    post.title = title
-                    post.content = content
-                    post.notes = notes
-                    break
-        except ValueError as e:
-            raise e
-
+    # region : Create
     def __init_post_data(self):
         """Method to initialize the Post data."""
         post_list = self.post_repository.data
@@ -106,6 +69,85 @@ class PostServices:
             LogsHelper.error(e.args[0])
         except ValueError as e:
             LogsHelper.error(e.args[0])
+
+    def add_post(self, post: PostModel):
+        """Method to add posts."""
+        post.post_id = next(self.id_counter)  # Generate a unique ID
+        self.__post_items.append(post)
+        data_dict = self.post_items_dict
+        self.post_repository.write_data(data_dict)
+        return post
+
+    # endregion
+
+    # region : Read
+    def search(self, title_query="", content_query=""):
+        """The Posts search Method."""
+        try:
+            # Filter posts where the title or content contains the search term as a substring
+            filtered_posts = [
+                post.to_dict() for post in self.__post_items
+                if (title_query and title_query.lower() in post.title.lower()) or
+                   (content_query.lower() and content_query in post.content.lower())
+            ]
+            return filtered_posts
+        except ValueError as e:
+            raise e
+
+    # endregion
+
+    # region : Update
+    def update(self,
+               post_id: int,
+               author: str,
+               title: str,
+               content: str,
+               notes: str = ""):
+        """Method to update the post-item"""
+        try:
+            for post in self.__post_items:
+                if post.post_id == post_id:
+                    post.author = author
+                    post.title = title
+                    post.content = content
+                    post.notes = notes
+                    break
+
+            data_dict = self.post_items_dict
+            self.post_repository.write_data(data_dict)
+        except ValueError as e:
+            raise e
+
+    def update_likes(self,
+                     post_id: int):
+        """Method to add the likes for the post."""
+        try:
+            likes = 0
+            for post in self.__post_items:
+                if post.post_id == post_id:
+                    post.likes += 1
+                    likes = post.likes
+                    break
+            data_dict = self.post_items_dict
+            self.post_repository.write_data(data_dict)
+            return likes
+        except ValueError as e:
+            raise e
+
+    # endregion
+
+    # region : Delete
+
+    def delete_post(self, post):
+        """Method to add the likes for the post."""
+        try:
+            self.__post_items.remove(post)
+            data_dict = self.post_items_dict
+            self.post_repository.write_data(data_dict)
+        except ValueError as e:
+            raise e
+
+    # endregion
 
     def find_post_item_by_id(self, post_id):
         """Method to find the post-item by id"""

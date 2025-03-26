@@ -1,0 +1,24 @@
+[
+  {
+    "post_id": 1,
+    "author": "Ateet 2025",
+    "title": "AI 2025",
+    "content": "This is my first post.",
+    "likes": 0
+  },
+  {
+    "post_id": 2,
+    "author": "Ateet 2030",
+    "title": "AI 2030",
+    "content": "This is another post.",
+    "notes": "Remember important things.",
+    "likes": 0
+  },
+  {
+    "post_id": 3,
+    "author": "AI Visionary Ateet",
+    "title": "AI in 50 Years: A Glimpse into the Future",
+    "content": "In the year 2075, AI has reached unimaginable heights. Artificial General Intelligence (AGI) has not only surpassed human intelligence but has integrated seamlessly into every aspect of life. From hyper-personalized AI companions to fully autonomous cities, AI now shapes the very fabric of society.\n\nOne of the greatest breakthroughs has been the development of Quantum Neural Networks (QNNs), enabling AI to process and predict events with near-perfect accuracy. These AI systems work at the molecular level, assisting in medicine by curing diseases before symptoms appear. Cybernetic enhancements have also allowed humans to merge with AI, creating a new era of transhumanism.\n\nEducation is now fully AI-driven, with AI mentors personalizing learning for every individual based on their cognitive patterns. The traditional concept of jobs has faded, as AI handles most labor-intensive tasks, allowing humans to focus on creativity, exploration, and self-improvement.\n\nHowever, ethical challenges remain. With AI having emotions and independent thoughts, debates about AI rights have intensified. Some nations have granted AGI full citizenship, while others regulate AI to prevent existential risks.\n\nOne thing is clear—AI in 2075 is not just a tool but an integral part of human evolution.",
+    "likes": 15000
+  }
+]

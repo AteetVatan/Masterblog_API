@@ -1,10 +1,13 @@
 """Module for API route handlers (controllers)"""
-from flask import request, Blueprint, redirect, url_for, jsonify
+import json
 
-from helpers import LogsHelper
-from models import PostModel
-from services import PostServices
-from enums import Sort, Direction
+from flask import request, Blueprint, jsonify
+
+
+from backend.helpers import LogsHelper
+from backend.models import PostModel
+from backend.services import PostServices
+from backend.enums import Sort, Direction
 
 
 class PostController:
@@ -31,7 +34,7 @@ class PostController:
     def add_routes(self):
         """Method to add HTTP Routes."""
 
-        # REGION: Create
+        # region : Create
         @self.blue_print.route("/api/posts", methods=["POST"])
         def add_post():
             """Api end point to ADD Blog."""
@@ -64,9 +67,9 @@ class PostController:
                 LogsHelper.exception(f"add_post: 500 Problem while adding post : {e.args[0]}")
                 return jsonify({f"add_post: 500 Problem while adding post : {e.args[0]}"}), 500
 
-        # END REGION
+        # endregion
 
-        # REGION: Read
+        # region : Read
         @self.blue_print.route("/api/posts", methods=["GET"])
         def get_posts():
             """Api end point to ADD Blog."""
@@ -118,9 +121,9 @@ class PostController:
                 return jsonify(
                     {f"{message} : {e.args[0]}"}), 500
 
-        # END REGION
+        # endregion
 
-        # REGION: Update
+        # region : Update
         @self.blue_print.route('/api/posts/<id>', methods=['PUT'])
         def update_post(id: int):
             """Api end point to update Blog."""
@@ -156,9 +159,30 @@ class PostController:
                 LogsHelper.exception(f"{message} : {e.args[0]}")
                 return jsonify({f"a{message} : {e.args[0]}"}), 500
 
-        # END REGION
 
-        # REGION: Delete
+        @self.blue_print.route('/api/posts/update_likes', methods=['POST'])
+        def update_likes():
+            """Handles like button clicks and returns updated like count."""
+            try:
+                data = json.loads(request.data)
+                post_id = int(data.get("post_id", 0))
+
+                post, error = self.__post_services.find_post_item_by_id(post_id)
+                if error:
+                    return error
+
+                like_count = self.__post_services.update_likes(post_id)
+                return jsonify({"post_id": post_id, "likes": like_count}), 200
+            except ValueError as e:
+                message = ("update_likes: 500 Internal Server Error "
+                           "- Problem while updating Post likes")
+                LogsHelper.exception(f"{message} : {e.args[0]}")
+                return jsonify({f"a{message} : {e.args[0]}"}), 500
+
+
+        # endregion
+
+        # region : Delete
         @self.blue_print.route("/api/posts/<id>", methods=["DELETE"])
         def delete_post(id: int):
             """API End"""
@@ -170,7 +194,7 @@ class PostController:
                 post, error = self.__post_services.find_post_item_by_id(post_id)
                 if error:
                     return error
-                self.__post_services.post_items.remove(post)
+                self.__post_services.delete_post(post)
                 message = f"Post with id {post_id} has been deleted successfully."
                 LogsHelper.info(f"add_post: 200 {message}")
                 return jsonify({"message": message}), 200
@@ -179,9 +203,9 @@ class PostController:
                 LogsHelper.exception(f"{message} : {e.args[0]}")
                 return jsonify({f"{message} : {e.args[0]}"}), 500
 
-        # END REGION
+        # endregion
 
-        # REGION: Helper
+        # region : Helper
         def post_id_validation(post_id):
             """Method to validate ID."""
             try:
@@ -213,4 +237,4 @@ class PostController:
                 LogsHelper.error(message)
                 return None, (jsonify({"message": message}), 400)
 
-        # END REGION
+        # endregion
