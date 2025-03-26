@@ -10,26 +10,41 @@ A complete, modular, and extensible **Flask-based fullstack blog platform** feat
 
 ---
 
+## 🛠️ Running the App
+
+```bash
+# 1. Install Requirements
+python setup_all.py
+
+# 4. Run the app
+python start_all.py
+```
+
+Forntend Flask application runs at `http://localhost:5000` and connects to the backend API on `http://localhost:5002`.
+---
+
 ## 🧩 Project Overview
 
 The Masterblog Project is split into two tightly integrated layers:
 
 ### 1️⃣ **Backend – Masterblog API**
+
 A robust REST API with clean architecture and layered logic.
 
 ### 2️⃣ **Frontend – Masterblog UI**
+
 A Flask-based UI layer rendering data dynamically and elegantly.
 
 ---
 
 ## ⚙️ Tech Stack
 
-| Layer    | Tech Components |
-|----------|------------------|
-| Backend  | Flask, JSON, Swagger UI |
-| Frontend | Flask, HTML, CSS, JS, Jinja2 |
+| Layer    | Tech Components                                 |
+|----------|-------------------------------------------------|
+| Backend  | Flask, JSON, Swagger UI                         |
+| Frontend | Flask, HTML, CSS, JS, Jinja2                    |
 | Design   | MVC-inspired, Repository Pattern, Service Layer |
-| Docs     | Swagger (OpenAPI 2.0) |
+| Docs     | Swagger (OpenAPI 2.0)                           |
 
 ---
 
@@ -85,6 +100,7 @@ A modular, extensible **Flask-based REST API** for managing blog posts, built wi
 - 📘 **Swagger UI for API documentation**
 
 ---
+
 ## 🚀 API Endpoints
 
 Base URL: `http://localhost:5002`
@@ -124,8 +140,8 @@ Base URL: `http://localhost:5002`
 
 ### ❤️ `/api/posts/update_likes`
 
-| Method | Description                 |
-|--------|-----------------------------|
+| Method | Description                  |
+|--------|------------------------------|
 | POST   | Update like count for a post |
 
 **Request Body:**
@@ -177,8 +193,8 @@ flask-swagger-ui
 ## 🛠️ Running the App
 
 ```bash
-# 1. Navigate into the backend folder
-cd backend
+# 1. Install Requirements
+python setup_all.py
 
 # 2. Create virtual environment
 python -m venv .venv
@@ -207,7 +223,8 @@ App runs on `http://localhost:5002`
 
 # 🌐 Frontend – Masterblog UI
 
-A lightweight, responsive **Flask-based frontend** built to interface with the [Masterblog API](../backend/README.md). This layer focuses on rendering and interacting with blog posts using HTML, JavaScript, and CSS — the traditional trio.
+A lightweight, responsive **Flask-based frontend** built to interface with the [Masterblog API](../backend/README.md).
+This layer focuses on rendering and interacting with blog posts using HTML, JavaScript, and CSS — the traditional trio.
 
 ---
 
