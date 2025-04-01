@@ -144,7 +144,7 @@ source .venv/bin/activate  # or .venv\Scripts\activate on Windows
 pip install -r requirements.txt
 
 # 4. Run the app
-python backend_app.py
+python app.py
 ```
 
 App runs on `http://localhost:5002`
