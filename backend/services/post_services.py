@@ -30,7 +30,7 @@ class PostServices:
 
     def get_all_posts(self, sort="", direction=""):
         """Method to get all existing posts."""
-        reverse = direction == Direction.DESCENDING
+        reverse = direction == Direction.DESCENDING.value
         if sort:
             return sorted(self.post_items_dict, key=lambda x: x.get(sort), reverse=reverse)
         return self.post_items_dict
