@@ -1,4 +1,4 @@
-# 🧬🌐 Masterblog – Fullstack Blog Application
+# 🧬🌐 Masterblog API – Fullstack Blog Application
 
 A complete, modular, and extensible **Flask-based fullstack blog platform** featuring:
 
